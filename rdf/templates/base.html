@@ -1,0 +1,82 @@
+<!doctype html>
+
+<meta charset=utf-8>
+<meta name=viewport content="maximum-scale=1, width=device-width">
+<title>Retweet Dem Faves™</title>
+
+<link rel=stylesheet href=//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/css/bootstrap-combined.min.css>
+<style>
+    h1, h2, h3, h4, h5, h6 {
+        padding-bottom: 14px;
+    }
+
+    .messages {
+        list-style-type: none;
+        margin: inherit;
+        padding: inherit;
+    }
+
+    .navbar {
+        padding-bottom: 14px;
+    }
+
+    {% block style %}
+    {% endblock %}
+</style>
+
+<div class="navbar navbar-static-top">
+    <div class=navbar-inner>
+        <div class=container>
+            {% if twitter_user %}
+                <a class="btn btn-navbar" data-toggle=collapse data-target=.nav-collapse>
+                    <span class=icon-bar></span>
+                    <span class=icon-bar></span>
+                    <span class=icon-bar></span>
+                </a>
+            {% endif %}
+
+            <a class=brand href="{% url landing %}">Retweet Dem Faves™</a>
+
+            <nav class=nav-collapse>
+                {% if twitter_user %}
+                    <ul class=nav>
+                        <li><a href="{% url home %}">Home</a>
+                        <li><a href="{% url settings %}">Settings</a>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li class=dropdown>
+                            <a href class=dropdown-toggle data-toggle=dropdown>@{{ twitter_user.screen_name }} <b class=caret></b></a>
+                            <ul class=dropdown-menu>
+                                <li><a href="{% url log_out %}">Log out</a>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class=container>
+    {% if messages %}
+        <ul class=messages>
+            {% for message in messages %}
+                <li>
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        <button type=button class=close data-dismiss=alert>×</button>
+                        {{ message }}
+                    </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% block contents %}
+    {% endblock %}
+</div>
+
+<script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js></script>
+<script async src=//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/js/bootstrap.min.js></script>
+<script>
+    {% block script %}
+    {% endblock %}
+</script>
