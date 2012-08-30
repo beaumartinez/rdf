@@ -3,8 +3,14 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import logout_then_login
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from tweepy import OAuthHandler, TweepError
+
+def landing(request):
+    if request.user.is_authenticated():
+        return redirect(reverse('home'))
+
+    return render(request, 'landing.html')
 
 def home(request):
     return HttpResponse('Hi')
