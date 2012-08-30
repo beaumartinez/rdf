@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import logout_then_login
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -39,3 +40,9 @@ def twitter_oauth_verify(request):
         login(request, user)
 
     return redirect(reverse('home'))
+
+def log_out(request):
+    return logout_then_login(request, reverse('home'))
+
+def log_in(request):
+    return redirect(reverse('twitter_oauth_request'))
