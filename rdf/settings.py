@@ -149,4 +149,8 @@ LOGGING = {
 
 AUTH_PROFILE_MODULE = 'rdf.UserProfile'
 
+AUTHENTICATION_BACKENDS = (
+    'rdf.auth.TwitterBackend',
+)
+
 from rdf.settings_keys import *
