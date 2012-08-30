@@ -45,7 +45,7 @@ def twitter_oauth_verify(request):
         user = authenticate(access_token_key=handler.access_token.key, access_token_secret=handler.access_token.secret, consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECRET)
         login(request, user)
 
-    return redirect(reverse('home'))
+    return redirect(reverse('landing'))
 
 def log_out(request):
     return logout_then_login(request, reverse('landing'))
