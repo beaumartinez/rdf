@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout_then_login
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
@@ -12,6 +13,7 @@ def landing(request):
 
     return render(request, 'landing.html')
 
+@login_required
 def home(request):
     return HttpResponse('Hi')
 
