@@ -40,3 +40,5 @@ class UserProfile(Model):
             next_retweet_ = last_retweet.datetime + relativedelta(seconds=seconds)
         
         return next_retweet_
+
+import rdf.signals
