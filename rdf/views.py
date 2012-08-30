@@ -48,7 +48,7 @@ def twitter_oauth_verify(request):
     return redirect(reverse('home'))
 
 def log_out(request):
-    return logout_then_login(request, reverse('home'))
+    return logout_then_login(request, reverse('landing'))
 
 def log_in(request):
     return redirect(reverse('twitter_oauth_request'))
