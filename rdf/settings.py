@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse_lazy
+
 # Django settings for rdf project.
 
 DEBUG = True
@@ -152,5 +154,7 @@ AUTH_PROFILE_MODULE = 'rdf.UserProfile'
 AUTHENTICATION_BACKENDS = (
     'rdf.auth.TwitterBackend',
 )
+
+LOGIN_URL = reverse_lazy('log_in')
 
 from rdf.settings_keys import *
