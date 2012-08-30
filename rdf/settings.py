@@ -147,4 +147,6 @@ LOGGING = {
 
 # New shit
 
+AUTH_PROFILE_MODULE = 'rdf.UserProfile'
+
 from rdf.settings_keys import *
