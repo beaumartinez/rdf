@@ -160,6 +160,7 @@ LOGIN_URL = reverse_lazy('log_in')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
 )
 
 from rdf.settings_keys import *
