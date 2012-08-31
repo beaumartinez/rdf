@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block contents %}
+    <section>
+        <h1>Hi @{{ twitter_user.screen_name }}</h1>
+        {% if not profile.settings.paused %}
+            <p>Your next retweet will be <time datetime="{{ profile.next_retweet.isoformat }}">{{ profile.next_retweet|naturaltime }}</time>.
+            <p>You retweet {{ profile.settings.frequency }} time{{ profile.settings.frequency|pluralize }} a day.
+        {% else %}
+            <p>Your account is paused. You won't retweet whilst your account is paused.
+            <p>You can unpause it in the <a href="{% url settings %}">settings page</a>.
+        {% endif %}
+
+        {% if profile.retweets.all %}
+            <p>You have retweeted {{ profile.retweets.all|length }} times with Retweet Dem Faves™.
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>You last five retweets</h2>
+
+        {% if profile.retweets.last_five %}
+            <ul>
+                {% for retweet in profile.retweets.last_five %}
+                    <li>{{ retweet }}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You haven't retweeted with Retweet Dem Faves™ yet. Once you do, your last five retweets will appear here.
+        {% endif %}
+    </section>
+{% endblock %}
