@@ -3,7 +3,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import BooleanField, CharField, DateTimeField, PositiveIntegerField, ManyToManyField, Model, OneToOneField
+from django.db.models import BooleanField, CharField, DateTimeField, PositiveIntegerField, Manager, ManyToManyField, Model, OneToOneField
 
 from rdf.constants import MAX_FREQUENCY, MIN_FREQUENCY, SECONDS_PER_DAY
 
@@ -40,5 +40,12 @@ class UserProfile(Model):
             next_retweet_ = last_retweet.datetime + relativedelta(seconds=seconds)
         
         return next_retweet_
+
+# Managers
+
+class RetweetManager(Manager):
+
+    def last_five(self):
+        return self[:5]
 
 import rdf.signals
