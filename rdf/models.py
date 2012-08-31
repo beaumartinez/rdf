@@ -14,6 +14,8 @@ class Retweet(Model):
     class Meta(object):
         ordering = ('-datetime',)
 
+    objects = 'RetweetManager'
+
 class Settings(Model):
     frequency = PositiveIntegerField(default=MIN_FREQUENCY, help_text='How many times to retweet per day', validators=[MaxValueValidator(MAX_FREQUENCY), MinValueValidator(MIN_FREQUENCY)])
     paused = BooleanField(help_text='Pause your account. You won\'t retweet whilst your account is paused')
