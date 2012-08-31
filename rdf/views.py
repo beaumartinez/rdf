@@ -1,12 +1,16 @@
+# -*- coding: utf-8 -*-
+
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout_then_login
+from django.contrib.messages import error, success
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from tweepy import OAuthHandler, TweepError
 
+from rdf.forms import SettingsForm
 from rdf.utils import user_api
 
 def landing(request):
@@ -24,6 +28,28 @@ def home(request):
 
     return render(request, 'home.html', {
         'profile': profile,
+        'twitter_user': twitter_user, 
+    })
+
+@login_required
+def settings_view(request):
+    api = user_api(request.user)
+    twitter_user = api.me()
+
+    profile = request.user.get_profile()
+
+    form = SettingsForm(request.POST or None, instance=profile.settings)
+
+    if form.is_valid():
+        form.save()
+        success(request, 'Updated settings')
+
+        return redirect(reverse('home'))
+    elif request.POST:
+        error(request, 'Couldn\'t update settings—the form has errors')
+
+    return render(request, 'settings.html', {
+        'form': form,
         'twitter_user': twitter_user, 
     })
 
