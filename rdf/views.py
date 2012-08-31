@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from tweepy import OAuthHandler, TweepError
 
+from rdf.utils import user_api
+
 def landing(request):
     if request.user.is_authenticated():
         return redirect(reverse('home'))
@@ -15,7 +17,15 @@ def landing(request):
 
 @login_required
 def home(request):
-    return HttpResponse('Hi')
+    api = user_api(request.user)
+    twitter_user = api.me()
+
+    profile = request.user.get_profile()
+
+    return render(request, 'home.html', {
+        'profile': profile,
+        'twitter_user': twitter_user, 
+    })
 
 def twitter_oauth_request(request):
     callback = reverse('twitter_oauth_verify')
