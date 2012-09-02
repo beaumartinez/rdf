@@ -32,3 +32,9 @@
         {% endif %}
     </section>
 {% endblock %}
+
+{% block script %}
+    $('abbr').tooltip({
+        trigger: 'click',
+    });
+{% endblock %}
