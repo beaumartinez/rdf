@@ -4,7 +4,7 @@
 
 {% block contents %}
     <section>
-        <h1>Hi @{{ twitter_user.screen_name }}</h1>
+        <h1 class=title>Hi @{{ twitter_user.screen_name }}</h1>
         {% if not profile.settings.paused %}
             <p>Your next retweet will be <abbr title="{{ profile.next_retweet|date:'DATETIME_FORMAT' }} UTC"><time datetime="{{ profile.next_retweet.isoformat }}">{{ profile.next_retweet|naturaltime }}</time></abbr>.
             <p>You retweet {{ profile.settings.frequency }} time{{ profile.settings.frequency|pluralize }} a day.
