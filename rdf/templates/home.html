@@ -2,6 +2,13 @@
 
 {% load humanize %}
 
+{% block style %}
+    abbr[data-original-title] {
+        border-bottom: 1px dotted;
+        cursor: help;
+    }
+{% endblock %}
+
 {% block contents %}
     <section>
         <h1 class=title>Hi @{{ twitter_user.screen_name }}</h1>
