@@ -157,4 +157,8 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_URL = reverse_lazy('log_in')
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.messages.context_processors.messages',
+)
+
 from rdf.settings_keys import *
