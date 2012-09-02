@@ -13,7 +13,7 @@
     <section>
         <h1 class=title>Hi @{{ twitter_user.screen_name }}</h1>
         {% if not profile.settings.paused %}
-            <p>Your next retweet will be <abbr title="{{ profile.next_retweet|date:'DATETIME_FORMAT' }} UTC"><time datetime="{{ profile.next_retweet.isoformat }}">{{ profile.next_retweet|naturaltime }}</time></abbr>.
+            <p>Your next retweet will be <abbr title="{{ profile.next_retweet|date:'DATETIME_FORMAT' }} UTC"><time datetime="{{ profile.next_retweet|date:'Y-m-d\TH:i:s' }}">{{ profile.next_retweet|naturaltime }}</time></abbr>.
             <p>You retweet {{ profile.settings.frequency }} time{{ profile.settings.frequency|pluralize }} a day.
         {% else %}
             <p><strong>Your account is paused. You won't retweet whilst your account is paused.</strong>
