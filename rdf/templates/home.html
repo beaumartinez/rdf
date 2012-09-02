@@ -14,7 +14,7 @@
         {% endif %}
 
         {% if profile.retweets.all %}
-            <p>You have retweeted {{ profile.retweets.all.count }} times with Retweet Dem Faves™.
+            <p>You have retweeted {{ profile.retweets.all.count }} time{{ profile.retweets.all.count|pluralize }} with Retweet Dem Faves™.
         {% endif %}
     </section>
 
