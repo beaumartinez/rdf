@@ -9,7 +9,7 @@
             <p>Your next retweet will be <abbr title="{{ profile.next_retweet|date:'DATETIME_FORMAT' }} UTC"><time datetime="{{ profile.next_retweet.isoformat }}">{{ profile.next_retweet|naturaltime }}</time></abbr>.
             <p>You retweet {{ profile.settings.frequency }} time{{ profile.settings.frequency|pluralize }} a day.
         {% else %}
-            <p>Your account is paused. You won't retweet whilst your account is paused.
+            <p><strong>Your account is paused. You won't retweet whilst your account is paused.</strong>
             <p>You can unpause it in the <a href="{% url settings %}">settings page</a>.
         {% endif %}
 
