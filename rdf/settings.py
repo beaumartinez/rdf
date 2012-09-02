@@ -146,3 +146,7 @@ LOGGING = {
         },
     }
 }
+
+# New shit
+
+from rdf.settings_keys import *
