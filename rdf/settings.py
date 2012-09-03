@@ -161,6 +161,8 @@ AUTHENTICATION_BACKENDS = (
     'rdf.auth.TwitterBackend',
 )
 
+BROKER_BACKEND = 'django'
+
 DATETIME_FORMAT = 'l j F o, H:i'
 
 LOGIN_URL = reverse_lazy('log_in')
