@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'djcelery',
     'floppyforms',
+    'kombu.transport.django',
     'rdf',
 )
 
