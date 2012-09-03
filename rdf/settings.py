@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse_lazy
+from djcelery import setup_loader
 
 # Django settings for rdf project.
 
@@ -167,5 +168,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
 )
+
+setup_loader()
 
 from rdf.settings_keys import *
