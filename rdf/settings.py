@@ -117,6 +117,7 @@ INSTALLED_APPS = (
 
     'crispy_forms',
     'django.contrib.humanize',
+    'djcelery',
     'floppyforms',
     'rdf',
 )
