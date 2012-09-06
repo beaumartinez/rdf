@@ -165,7 +165,7 @@ BROKER_BACKEND = 'django'
 
 DATETIME_FORMAT = 'l j F o, H:i'
 
-LOGIN_URL = reverse_lazy('log_in')
+LOGIN_URL = reverse_lazy('landing')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
