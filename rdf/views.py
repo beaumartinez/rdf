@@ -32,6 +32,18 @@ def home(request):
     })
 
 @login_required
+def retweets(request):
+    api = user_api(request.user)
+    twitter_user = api.me()
+
+    profile = request.user.get_profile()
+
+    return render(request, 'retweets.html', {
+        'profile': profile,
+        'twitter_user': twitter_user, 
+    })
+
+@login_required
 def settings_view(request):
     api = user_api(request.user)
     twitter_user = api.me()
