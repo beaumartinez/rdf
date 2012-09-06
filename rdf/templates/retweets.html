@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block style %}
+    abbr[data-original-title] {
+        border-bottom: 1px dotted;
+        cursor: help;
+    }
+{% endblock %}
+
+{% block contents %}
+    <section>
+        <h1 class=title>Retweets</h1>
+
+        {% spaceless %}{% include 'utils/retweets.html' with message='your' retweets=profile.retweets.all start=profile.retweets.count %}{% endspaceless %}
+    </section>
+{% endblock %}
+
+{% block script %}
+    $('abbr').tooltip({
+        trigger: 'click',
+    });
+{% endblock %}
