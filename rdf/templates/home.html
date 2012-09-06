@@ -18,7 +18,7 @@
             <p>You can unpause it in the <a href="{% url settings %}">settings page</a>.
         {% endif %}
 
-        {% if profile.retweets %}
+        {% if profile.retweets.all %}
             <p>You have retweeted {{ profile.retweets.count }} time{{ profile.retweets.count|pluralize }}.
         {% endif %}
     </section>
