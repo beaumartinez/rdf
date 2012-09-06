@@ -3,12 +3,13 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import BooleanField, CharField, DateTimeField, Manager, ManyToManyField, Model, OneToOneField, PositiveIntegerField
+from django.db.models import BooleanField, CharField, DateTimeField, ForeignKey, Manager, Model, OneToOneField, PositiveIntegerField
 
 from rdf.constants import MAX_FREQUENCY, MIN_FREQUENCY, SECONDS_PER_DAY
 
 class Retweet(Model):
     datetime = DateTimeField(default=datetime.utcnow)
+    profile = ForeignKey('UserProfile', related_name='retweets')
     tweet_id = CharField(max_length=100)
 
     class Meta(object):
@@ -23,7 +24,6 @@ class Settings(Model):
 class UserProfile(Model):
     access_token_key = CharField(max_length=100)
     access_token_secret = CharField(max_length=100)
-    retweets = ManyToManyField('Retweet')
     settings = OneToOneField('Settings', null=True)
     user = OneToOneField(User)
 
