@@ -1,0 +1,12 @@
+{% if retweets %}
+    <ol reversed start="{{ start }}">
+        {% for retweet in retweets %}
+            <li>
+                <span class=retweet-text>{{ retweet.text|safe }}</span>
+                —<span class=retweet-user-name>@{{ retweet.user_name }}</span>
+                (<span class=retweet-datetime>{% spaceless %}{% include 'utils/datetime.html' with datetime=retweet.datetime %}{% endspaceless %}</span>).
+        {% endfor %}
+    </ol>
+{% else %}
+    <p>You haven't retweeted with Retweet Dem Faves™ yet. Once you do, {{ message }} retweets will appear here.
+{% endif %}
