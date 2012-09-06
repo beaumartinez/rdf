@@ -56,6 +56,7 @@
                 {% if twitter_user %}
                     <ul class=nav>
                         <li class="{% active 'home' %}"><a href="{% url home %}">Home</a>
+                        <li class="{% active 'retweets' %}"><a href="{% url retweets %}">Retweets</a>
                         <li class="{% active 'settings' %}"><a href="{% url settings %}">Settings</a>
                     </ul>
                     <ul class="nav pull-right">
