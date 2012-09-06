@@ -10,9 +10,11 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from tweepy import OAuthHandler, TweepError
 
+from rdf.decorators import save_to_session
 from rdf.forms import SettingsForm
 from rdf.utils import user_api
 
+@save_to_session('next')
 def landing(request):
     if request.user.is_authenticated():
         return redirect(reverse('home'))
