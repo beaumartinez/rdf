@@ -3,7 +3,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import BooleanField, CharField, DateTimeField, PositiveIntegerField, Manager, ManyToManyField, Model, OneToOneField
+from django.db.models import BooleanField, CharField, DateTimeField, Manager, ManyToManyField, Model, OneToOneField, PositiveIntegerField
 
 from rdf.constants import MAX_FREQUENCY, MIN_FREQUENCY, SECONDS_PER_DAY
 
