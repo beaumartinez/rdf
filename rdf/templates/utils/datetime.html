@@ -1,0 +1,5 @@
+{% load humanize %}
+
+<abbr title="{{ datetime|date:'DATETIME_FORMAT' }} UTC">
+    <time datetime="{{ datetime|date:'Y-m-d\TH:i:s' }}">{{ datetime|naturaltime }}</time>
+</abbr>
