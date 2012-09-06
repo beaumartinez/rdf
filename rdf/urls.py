@@ -4,6 +4,7 @@ urlpatterns = patterns('rdf.views',
     url(r'^$', 'landing', name='landing'),
 
     url(r'^home/$', 'home', name='home'),
+    url(r'^retweets/$', 'retweets', name='retweets'),
     url(r'^settings/$', 'settings_view', name='settings'),
 
     url('^log-out/$', 'log_out', name='log_out'),
