@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% load humanize %}
-
 {% block style %}
     abbr[data-original-title] {
         border-bottom: 1px dotted;
@@ -13,30 +11,24 @@
     <section>
         <h1 class=title>Hi @{{ twitter_user.screen_name }}</h1>
         {% if not profile.settings.paused %}
-            <p>Your next retweet will be <abbr title="{{ profile.next_retweet|date:'DATETIME_FORMAT' }} UTC"><time datetime="{{ profile.next_retweet|date:'Y-m-d\TH:i:s' }}">{{ profile.next_retweet|naturaltime }}</time></abbr>.
+            <p>Your next retweet will be {% spaceless %}{% include 'utils/datetime.html' with datetime=profile.next_retweet %}{% endspaceless %}.
             <p>You retweet {{ profile.settings.frequency }} time{{ profile.settings.frequency|pluralize }} a day.
         {% else %}
             <p><strong>Your account is paused. You won't retweet whilst your account is paused.</strong>
             <p>You can unpause it in the <a href="{% url settings %}">settings page</a>.
         {% endif %}
 
-        {% if profile.retweets.all %}
-            <p>You have retweeted {{ profile.retweets.all.count }} time{{ profile.retweets.all.count|pluralize }} with Retweet Dem Faves™.
+        {% if profile.retweets %}
+            <p>You have retweeted {{ profile.retweets.count }} time{{ profile.retweets.count|pluralize }}.
         {% endif %}
     </section>
 
     <section>
         <h2>You last five retweets</h2>
 
-        {% if profile.retweets.last_five %}
-            <ul>
-                {% for retweet in profile.retweets.last_five %}
-                    <li>{{ retweet }}
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>You haven't retweeted with Retweet Dem Faves™ yet. Once you do, your last five retweets will appear here.
-        {% endif %}
+        {% with profile.retweets.all|slice:'5' as last_five_retweets %}
+            {% spaceless %}{% include 'utils/retweets.html' with message='your last five' retweets=last_five_retweets start=profile.retweets.count %}{% endspaceless %}
+        {% endwith %}
     </section>
 {% endblock %}
 
