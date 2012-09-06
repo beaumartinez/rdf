@@ -9,8 +9,7 @@ from rdf.constants import MAX_FREQUENCY, MIN_FREQUENCY, SECONDS_PER_DAY
 
 class RetweetManager(Manager):
 
-    def last_five(self):
-        return self[:5]
+    pass
 
 # Models
 
