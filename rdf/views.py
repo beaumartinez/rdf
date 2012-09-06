@@ -81,6 +81,8 @@ def twitter_oauth_request(request):
     return redirect(redirect_url)	
 
 def twitter_oauth_verify(request):
+    redirect_url = reverse('landing')
+
     request_token_key = request.session.pop('request_token_key', '')
     request_token_secret = request.session.pop('request_token_secret', '')
 
@@ -97,7 +99,9 @@ def twitter_oauth_verify(request):
         user = authenticate(access_token_key=handler.access_token.key, access_token_secret=handler.access_token.secret, consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECRET)
         login(request, user)
 
-    return redirect(reverse('landing'))
+        redirect_url = request.session.pop('next', redirect_url)
+
+    return redirect(redirect_url)
 
 def log_out(request):
     return logout_then_login(request, reverse('landing'))
