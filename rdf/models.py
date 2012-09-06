@@ -17,7 +17,9 @@ class RetweetManager(Manager):
 class Retweet(Model):
     datetime = DateTimeField(default=datetime.utcnow)
     profile = ForeignKey('UserProfile', related_name='retweets')
+    text = CharField(max_length=140)
     tweet_id = CharField(max_length=100)
+    user_name = CharField(max_length=100)
 
     class Meta(object):
         ordering = ('-datetime',)
