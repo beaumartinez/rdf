@@ -9,7 +9,13 @@ from rdf.constants import MAX_FREQUENCY, MIN_FREQUENCY, SECONDS_PER_DAY
 
 class RetweetManager(Manager):
 
-    pass
+    def create_from_tweet(self, profile, tweet):
+        return self.create(
+            profile=profile,
+            text=tweet.text,
+            tweet_id=tweet.id,
+            user_name=tweet.user.screen_name
+        )
 
 # Models
 
