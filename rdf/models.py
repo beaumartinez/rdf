@@ -27,6 +27,7 @@ class Retweet(Model):
     user_name = CharField(max_length=100)
 
     class Meta(object):
+        get_latest_by = 'datetime'
         ordering = ('-datetime',)
 
     objects = RetweetManager()
