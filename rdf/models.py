@@ -47,11 +47,9 @@ class UserProfile(Model):
         period = 1 / float(self.settings.frequency)
         seconds = SECONDS_PER_DAY * period
 
-        retweets = self.retweets.all()
-
         try:
-            last_retweet = retweets[0]
-        except IndexError:
+            last_retweet = self.retweets.latest()
+        except Retweet.DoesNotExist:
             next_retweet_ = datetime.utcnow()
         else:
             next_retweet_ = last_retweet.datetime + relativedelta(seconds=seconds)
