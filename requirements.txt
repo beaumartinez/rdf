@@ -1,6 +1,7 @@
 django
 django-celery
 django-crispy-forms
+django-debug-toolbar
 django-floppyforms
 python-dateutil
 tweepy
