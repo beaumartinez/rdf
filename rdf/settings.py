@@ -175,3 +175,4 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 setup_loader()
 
 from rdf.settings_keys import *
+from rdf.settings_local import *
