@@ -16,7 +16,7 @@ class RetweetTask(Task):
 
         self.apply_async(args, eta=profile.next_retweet)
 
-@task(base=RetweetTask)
+@task(base=RetweetTask, ignore_result=True)
 def retweet(user_name):
     profile = UserProfile.objects.get(user__username=user_name)
 
