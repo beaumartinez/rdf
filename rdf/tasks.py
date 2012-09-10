@@ -1,7 +1,9 @@
 from celery import task
+from celery.task.control import revoke
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
-from rdf.models import Retweet, UserProfile
+from rdf.models import Retweet, Settings, UserProfile
 from rdf.utils import user_api, retweet_random_favorite_tweet
 
 @task
@@ -14,3 +16,18 @@ def retweet(user_name):
     retweet_ = Retweet.objects.create_from_tweet(profile, tweet)
 
     return retweet_
+
+def reset_retweet_task_id(profile):
+    revoke(profile.retweet_task_id)
+
+    if not profile.settings.paused:
+        profile.retweet_task_id = retweet.apply_async((profile.user.username,), eta=profile.next_retweet)
+        profile.save()
+
+# Signals
+
+def reset_retweet_task(sender, instance, created, **kwargs):
+    reset_retweet_task_id(instance.profile)
+
+post_save.connect(reset_retweet_task, sender=Settings)
+post_save.connect(reset_retweet_task, sender=Retweet)
