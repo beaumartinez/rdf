@@ -11,6 +11,6 @@ def retweet(user_name):
     api = user_api(profile)
 
     tweet = retweet_random_favorite_tweet(api)
-    retweet = Retweet.objects.create_from_tweet(profile, tweet)
+    retweet_ = Retweet.objects.create_from_tweet(profile, tweet)
 
-    return retweet
+    return retweet_
