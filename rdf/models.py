@@ -58,3 +58,4 @@ class UserProfile(Model):
         return next_retweet_
 
 import rdf.signals
+import rdf.tasks
