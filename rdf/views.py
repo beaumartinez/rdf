@@ -23,10 +23,10 @@ def landing(request):
 
 @login_required
 def home(request):
-    api = user_api(request.user)
-    twitter_user = api.me()
-
     profile = request.user.get_profile()
+
+    api = user_api(profile)
+    twitter_user = api.me()
 
     return render(request, 'home.html', {
         'profile': profile,
@@ -35,10 +35,10 @@ def home(request):
 
 @login_required
 def retweets(request):
-    api = user_api(request.user)
-    twitter_user = api.me()
-
     profile = request.user.get_profile()
+
+    api = user_api(profile)
+    twitter_user = api.me()
 
     return render(request, 'retweets.html', {
         'profile': profile,
@@ -47,10 +47,10 @@ def retweets(request):
 
 @login_required
 def settings_view(request):
-    api = user_api(request.user)
-    twitter_user = api.me()
-
     profile = request.user.get_profile()
+
+    api = user_api(profile)
+    twitter_user = api.me()
 
     form = SettingsForm(request.POST or None, instance=profile.settings)
 
