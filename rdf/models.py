@@ -35,11 +35,11 @@ class Retweet(Model):
 class Settings(Model):
     frequency = PositiveIntegerField(default=MIN_FREQUENCY, help_text='How many times to retweet per day', validators=[MaxValueValidator(MAX_FREQUENCY), MinValueValidator(MIN_FREQUENCY)])
     paused = BooleanField(help_text='Pause your account. You won\'t retweet whilst your account is paused')
+    profile = OneToOneField('UserProfile')
 
 class UserProfile(Model):
     access_token_key = CharField(max_length=100)
     access_token_secret = CharField(max_length=100)
-    settings = OneToOneField('Settings', null=True)
     user = OneToOneField(User)
 
     @property

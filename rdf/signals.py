@@ -10,10 +10,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 def create_settings(sender, instance, created, **kwargs):
     if created:
-        settings = Settings.objects.create()
-
-        instance.settings = settings
-        instance.save()
+        Settings.objects.create(profile=instance)
 
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(create_settings, sender=UserProfile)
