@@ -25,7 +25,11 @@ def retweet(user_name):
 
     api = user_api(profile)
 
-    tweet = retweet_random_favorite_tweet(api)
+    try:
+        tweet = retweet_random_favorite_tweet(api)
+    except TweepError, e:
+        raise retweet.retry(exc=e)
+
     retweet_ = Retweet.objects.create_from_tweet(profile, tweet)
 
     return retweet_
