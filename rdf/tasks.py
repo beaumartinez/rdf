@@ -20,6 +20,9 @@ class RetweetTask(Task):
 def retweet(user_name):
     profile = UserProfile.objects.get(user__username=user_name)
 
+    profile.retweet_task_id = retweet.request.id
+    profile.save()
+
     api = user_api(profile)
 
     tweet = retweet_random_favorite_tweet(api)
@@ -31,8 +34,7 @@ def reset_retweet_task_id(profile):
     revoke(profile.retweet_task_id)
 
     if not profile.settings.paused:
-        profile.retweet_task_id = retweet.apply_async((profile.user.username,), eta=profile.next_retweet)
-        profile.save()
+        retweet.apply_async((profile.user.username,), eta=profile.next_retweet)
 
 # Signals
 
