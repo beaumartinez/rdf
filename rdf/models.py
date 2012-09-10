@@ -40,6 +40,7 @@ class Settings(Model):
 class UserProfile(Model):
     access_token_key = CharField(max_length=100)
     access_token_secret = CharField(max_length=100)
+    retweet_task_id = CharField(max_length=100)
     user = OneToOneField(User)
 
     @property
