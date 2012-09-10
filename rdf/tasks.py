@@ -30,4 +30,3 @@ def reset_retweet_task(sender, instance, created, **kwargs):
     reset_retweet_task_id(instance.profile)
 
 post_save.connect(reset_retweet_task, sender=Settings)
-post_save.connect(reset_retweet_task, sender=Retweet)
