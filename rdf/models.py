@@ -54,6 +54,9 @@ class UserProfile(Model):
             next_retweet_ = datetime.utcnow()
         else:
             next_retweet_ = last_retweet.datetime + relativedelta(seconds=seconds)
+
+            if next_retweet_ < datetime.utcnow():
+                next_retweet = datetime.utcnow()
         
         return next_retweet_
 
